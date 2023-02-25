@@ -28,7 +28,9 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-        g.fillRect(ALLBITS, ABORT, WIDTH, HEIGHT);
+        g.setColor(Color.decode("#baffca"));
+        g.fillRect(0, 0, 600, 600);
+        plot(g, 12, 18);
     }
 
     public void bezierCurve(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
@@ -47,6 +49,48 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
             plot(g, x, y);
         }
+    }
+
+    public void bresenhamsLine(Graphics g, int x1, int y1, int x2, int y2) {
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+
+        int sx = (x1 < x2) ? 1 : -1;
+        int sy = (y1 < y2) ? 1 : -1;
+        boolean isSwap = false;
+
+        if (dy > dx) {
+            int tmp;
+            tmp = dx;
+            dx = dy;
+            dy = tmp;
+            isSwap = true;
+        }
+
+        int D = 2 * dy - dx;
+
+        int x = x1;
+        int y = y1;
+
+        for (int i = 1; i <= dx; i++) {
+            plot(g, x, y);
+            if (D >= 0) {
+                if (isSwap) {
+                    x += sx;
+                } else {
+                    y += sy;
+                }
+
+                D -= 2 * dx;
+            }
+            if (isSwap) {
+                y += sy;
+            } else {
+                x += sx;
+            }
+            D += 2 * dy;
+        }
+
     }
 
     void plot(Graphics g, int x, int y) {
