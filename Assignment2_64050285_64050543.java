@@ -6,8 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
-    int size = 6;
-
+    public int size;
     public static void main(String[] args) {
         Assignment2_64050285_64050543 m = new Assignment2_64050285_64050543();
         JFrame f = new JFrame();
@@ -28,9 +27,54 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.decode("#baffca"));
-        g.fillRect(0, 0, 600, 600);
-        plot(g, 12, 18);
+        size = 1;
+        g.setColor(Color.decode("#bd75ff"));
+        g.fillRect(0, 0, 600, 36);
+
+        skydetail(g,0,Color.decode("#ff7bff"),18);
+        skydetail(g,6,Color.decode("#ff7bff"),30);
+        g.setColor(Color.decode("#ff7bff"));
+        g.fillRect(0, 36, 600, 45);
+        skydetail(g,0,Color.decode("#bd75ff"),42);
+
+        skydetail(g,0,Color.decode("#ffbcda"),72);
+        g.setColor(Color.decode("#ffbcda"));
+        g.fillRect(0, 78, 600, 30);
+        skydetail(g,6,Color.decode("#ff7bff"),84);
+
+        skydetail(g,6,Color.decode("#ffcace"),102);
+        g.setColor(Color.decode("#ffcace"));
+        g.fillRect(0, 108, 600, 37);
+        skydetail(g,0,Color.decode("#ffbcda"),115);
+
+        skydetail(g,6,Color.decode("#fff2aa"),138);
+        g.setColor(Color.decode("#fff2aa"));
+        g.fillRect(0, 144, 600, 36);
+        skydetail(g,0,Color.decode("#ffcace"),150);
+
+        skydetail(g,6,Color.decode("#fdfec6"),174);
+        g.setColor(Color.decode("#fdfec6"));
+        g.fillRect(0, 180, 600, 35);
+        skydetail(g,0,Color.decode("#fff2aa"),186);
+
+        size = 6;
+        g.setColor(Color.decode("#5494d8"));
+        bresenhamsLine(g, 0, 216, 118, 216);
+        bresenhamsLine(g, 0, 222, 71, 222);
+        bresenhamsLine(g, 0, 228, 40, 228);
+        bresenhamsLine(g, 534, 216, 600, 216);
+        bresenhamsLine(g, 552, 222, 600, 222);
+        bresenhamsLine(g, 575, 228, 600, 228);
+        bresenhamsLine(g, 582, 234, 600, 234);
+
+    }
+
+    public void skydetail(Graphics g, int start, Color color, int y) {
+        for (int i = start; i <= 600; i+=12) {
+            g.setColor(color);
+            size = 6;
+            plot(g, i, y);
+        }
     }
 
     public void bezierCurve(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
