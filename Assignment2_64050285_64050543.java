@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
-    long fps = 1000 / 10;
+    long fps = 1000 / 6;
     int size = 6;
     int cloudPosition = 0;
     int cloudSpeed = 6;
@@ -47,7 +47,6 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-        size = 1;
         g.setColor(Color.decode("#bd75ff"));
         g.fillRect(0, 0, 600, 36);
 
@@ -77,7 +76,6 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(0, 180, 600, 35);
         skydetail(g, 0, Color.decode("#fff2aa"), 186);
 
-        size = 6;
         g.setColor(Color.decode("#5494d8"));
         bresenhamsLine(g, 0, 216, 118, 216);
         bresenhamsLine(g, 0, 222, 71, 222);
@@ -92,8 +90,77 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void cloud(Graphics g) {
+        // cloud 1
         g.setColor(Color.decode("#fdfecc"));
-        bresenhamsLine(g, 42 + cloudPosition, 84, 102 + cloudPosition, 84);
+        bresenhamsLine(g, 90 + cloudPosition, 54, 113 + cloudPosition, 54);
+        bresenhamsLine(g, 72 + cloudPosition, 60, 113 + cloudPosition, 60);
+        bresenhamsLine(g, 60 + cloudPosition, 66, 125 + cloudPosition, 66);
+        bresenhamsLine(g, 48 + cloudPosition, 72, 131 + cloudPosition, 72);
+        bresenhamsLine(g, 48 + cloudPosition, 78, 137 + cloudPosition, 78);
+        bresenhamsLine(g, 42 + cloudPosition, 84, 137 + cloudPosition, 84);
+        g.setColor(Color.decode("#ccd9fe"));
+        bresenhamsLine(g, 66 + cloudPosition, 72, 89 + cloudPosition, 72);
+        bresenhamsLine(g, 54 + cloudPosition, 78, 101 + cloudPosition, 78);
+        bresenhamsLine(g, 54 + cloudPosition, 84, 119 + cloudPosition, 84);
+        bresenhamsLine(g, 42 + cloudPosition, 90, 125 + cloudPosition, 90);
+        g.setColor(Color.decode("#cbf6fe"));
+        plot(g, 78 + cloudPosition, 78);
+        bresenhamsLine(g, 78 + cloudPosition, 66, 107 + cloudPosition, 66);
+        bresenhamsLine(g, 90 + cloudPosition, 72, 113 + cloudPosition, 72);
+        bresenhamsLine(g, 102 + cloudPosition, 78, 125 + cloudPosition, 78);
+        bresenhamsLine(g, 66 + cloudPosition, 84, 77 + cloudPosition, 84);
+        bresenhamsLine(g, 120 + cloudPosition, 84, 131 + cloudPosition, 84);
+        bresenhamsLine(g, 72 + cloudPosition, 90, 101 + cloudPosition, 90);
+        bresenhamsLine(g, 126 + cloudPosition, 90, 137 + cloudPosition, 90);
+
+        // cloud 2
+        g.setColor(Color.decode("#fdfecc"));
+        plot(g, 204 + cloudPosition, 114);
+        plot(g, 210 + cloudPosition, 120);
+        plot(g, 222 + cloudPosition, 120);
+        bresenhamsLine(g, 186 + cloudPosition, 108, 197 + cloudPosition, 108);
+        g.setColor(Color.decode("#cbf6fe"));
+        plot(g, 216 + cloudPosition, 120);
+        bresenhamsLine(g, 174 + cloudPosition, 108, 185 + cloudPosition, 108);
+        bresenhamsLine(g, 168 + cloudPosition, 114, 197 + cloudPosition, 114);
+        bresenhamsLine(g, 156 + cloudPosition, 120, 209 + cloudPosition, 120);
+        bresenhamsLine(g, 156 + cloudPosition, 126, 221 + cloudPosition, 126);
+        g.setColor(Color.decode("#ccd9fe"));
+        plot(g, 174 + cloudPosition, 114);
+        plot(g, 198 + cloudPosition, 114);
+        bresenhamsLine(g, 162 + cloudPosition, 120, 197 + cloudPosition, 120);
+        bresenhamsLine(g, 156 + cloudPosition, 126, 173 + cloudPosition, 126);
+        bresenhamsLine(g, 180 + cloudPosition, 126, 203 + cloudPosition, 126);
+        plot(g, 222 + cloudPosition, 126);
+
+        // cloud 3
+        g.setColor(Color.decode("#fdfecc"));
+        plot(g, 474 + cloudPosition, 90);
+        g.fillRect(432 + cloudPosition, 96, 48, 12);
+        bresenhamsLine(g, 426 + cloudPosition, 108, 437 + cloudPosition, 108);
+        bresenhamsLine(g, 474 + cloudPosition, 114, 485 + cloudPosition, 114);
+
+        g.setColor(Color.decode("#cbf6fe"));
+        plot(g, 450 + cloudPosition, 96);
+        plot(g, 426 + cloudPosition, 102);
+        plot(g, 420 + cloudPosition, 108);
+        bresenhamsLine(g, 468 + cloudPosition, 102, 485 + cloudPosition, 102);
+        bresenhamsLine(g, 438 + cloudPosition, 108, 473 + cloudPosition, 108);
+        bresenhamsLine(g, 414 + cloudPosition, 114, 473 + cloudPosition, 114);
+        bresenhamsLine(g, 492 + cloudPosition, 114, 509 + cloudPosition, 114);
+        bresenhamsLine(g, 408 + cloudPosition, 120, 419 + cloudPosition, 120);
+        g.setColor(Color.decode("#ccd9fe"));
+        plot(g, 468 + cloudPosition, 90);
+        plot(g, 456 + cloudPosition, 96);
+        plot(g, 432 + cloudPosition, 114);
+        plot(g, 486 + cloudPosition, 114);
+        bresenhamsLine(g, 480 + cloudPosition, 96, 497 + cloudPosition, 96);
+        bresenhamsLine(g, 486 + cloudPosition, 102, 503 + cloudPosition, 102);
+        bresenhamsLine(g, 474 + cloudPosition, 108, 533 + cloudPosition, 108);
+        bresenhamsLine(g, 444 + cloudPosition, 114, 467 + cloudPosition, 114);
+        bresenhamsLine(g, 510 + cloudPosition, 114, 539 + cloudPosition, 114);
+        bresenhamsLine(g, 420 + cloudPosition, 120, 521 + cloudPosition, 120);
+
     }
 
     public void skydetail(Graphics g, int start, Color color, int y) {
@@ -144,7 +211,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         int x = x1;
         int y = y1;
 
-        for (int i = 1; i <= dx; i++) {
+        for (int i = 1; i <= dx; i += size) {
             plot(g, x, y);
             if (D >= 0) {
                 if (isSwap) {
