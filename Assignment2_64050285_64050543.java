@@ -7,10 +7,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
-    long fps = 1000 / 6;
+    long fps = 1000 / 1;
     int size = 6;
     int cloudPosition = 0;
     int cloudSpeed = 6;
+    int flowerSpeed = 6;
 
     public static void main(String[] args) {
         Assignment2_64050285_64050543 m = new Assignment2_64050285_64050543();
@@ -29,10 +30,10 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
             long start = System.currentTimeMillis();
 
             // code here
-            System.out.println(cloudPosition);
             cloudPosition += cloudSpeed;
             if (cloudPosition >= 30 || cloudPosition <= 0)
                 cloudSpeed = -cloudSpeed;
+            flowerSpeed = (flowerSpeed + 6) % 12;
             repaint();
             // end code
 
@@ -47,6 +48,10 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
+        g.setColor(Color.decode("#80ddea"));
+        g.fillRect(0, 0, 600, 600);
+
+        // sky
         g.setColor(Color.decode("#bd75ff"));
         g.fillRect(0, 0, 600, 36);
 
@@ -82,7 +87,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 0, 228, 40, 228);
         bresenhamsLine(g, 534, 216, 600, 216);
         bresenhamsLine(g, 552, 222, 600, 222);
-        bresenhamsLine(g, 575, 228, 600, 228);
+        bresenhamsLine(g, 575, 228, 599, 228);
         bresenhamsLine(g, 582, 234, 600, 234);
         g.setColor(Color.decode("#54ccd8"));
         bresenhamsLine(g, 462, 216, 533, 216);
@@ -167,6 +172,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 30, 336, 40, 336);
 
         cloud(g);
+        flower(g);
 
     }
 
@@ -244,8 +250,104 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
     }
 
+    public void flower(Graphics g) {
+        // flower petals
+        g.setColor(Color.decode("#d6adfe"));
+        plot(g, 18 + flowerSpeed, 396);
+        plot(g, 42 + flowerSpeed, 396);
+        plot(g, 30 + flowerSpeed, 408);
+        g.fillRect(24 + flowerSpeed, 390, 18, 18);
+
+        g.setColor(Color.decode("#fe8aec"));
+        g.fillRect(66, 456 + flowerSpeed, 12, 6);
+        g.fillRect(60 + flowerSpeed, 462, 24, 18);
+        g.fillRect(54 + flowerSpeed, 468, 6, 12 - flowerSpeed);
+        g.fillRect(60 + flowerSpeed * 5, 480 - flowerSpeed * 2, 18 - flowerSpeed * 2, 6);
+
+        g.setColor(Color.decode("#d8a9ff"));
+        plot(g, 102 + flowerSpeed, 558);
+        plot(g, 126 + flowerSpeed, 558);
+        g.fillRect(108 + flowerSpeed, 552, 18, 18);
+
+        g.setColor(Color.decode("#d6adfe"));
+        plot(g, 174 + flowerSpeed * 2, 540);
+        plot(g, 198 + flowerSpeed * 2, 540);
+        g.fillRect(180 + flowerSpeed * 2, 534, 18, 18);
+
+        g.setColor(Color.decode("#fe89ed"));
+        plot(g, 294 + flowerSpeed, 522);
+        plot(g, 318 + flowerSpeed, 522);
+        g.fillRect(300 + flowerSpeed, 516, 18, 18);
+
+        g.setColor(Color.decode("#d8a8ff"));
+        plot(g, 360 + flowerSpeed, 558);
+        plot(g, 384 + flowerSpeed, 558);
+        g.fillRect(366 + flowerSpeed, 552, 18, 18);
+
+        g.setColor(Color.decode("#d6acfe"));
+        plot(g, 492 + flowerSpeed, 546);
+        plot(g, 522 + flowerSpeed, 546);
+        g.fillRect(498 + flowerSpeed, 540, 24, 18);
+
+        g.setColor(Color.decode("#fe8aec"));
+        plot(g, 474 + flowerSpeed, 468);
+        g.fillRect(486 + flowerSpeed, 456, 18, 6);
+        g.fillRect(480 + flowerSpeed, 462, 30, 12);
+        g.fillRect(480 + flowerSpeed, 474, 24, 6);
+
+        // center of flower
+        g.setColor(Color.decode("#fdffca"));
+        plot(g, 30 + flowerSpeed, 396);
+        plot(g, 114 + flowerSpeed, 558);
+        plot(g, 186 + flowerSpeed * 2, 540);
+        plot(g, 306 + flowerSpeed, 522);
+        plot(g, 372 + flowerSpeed, 558);
+        plot(g, 486 + flowerSpeed, 468);
+        plot(g, 492 + flowerSpeed, 462);
+        g.fillRect(66 + flowerSpeed, 468, 6 + flowerSpeed, 6);
+        g.fillRect(504 + flowerSpeed, 546, 12, 6);
+
+        // stick of flower sort by left to right
+        g.setColor(Color.decode("#6ac47e"));
+
+        g.fillRect(30 + flowerSpeed * 2, 408, 6, 30 - flowerSpeed * 3);
+        g.fillRect(36, 426 - flowerSpeed * 2, 6, 18 + flowerSpeed);
+        plot(g, 42 - flowerSpeed * 2, 426);
+
+        g.fillRect(66 + flowerSpeed, 486 - flowerSpeed, 6, 36);
+        g.fillRect(60, 522, 6, 18);
+        g.fillRect(72, 504, 6, 30);
+        g.fillRect(78, 498 - flowerSpeed, 12, 6 + flowerSpeed);
+        g.fillRect(84, 486, flowerSpeed * 2, 6);
+        plot(g, 66, 522);
+        plot(g, 78, 504);
+
+        g.fillRect(108, 576 + flowerSpeed, 6, 12 - flowerSpeed);
+        g.fillRect(114, 570, 6, 12);
+
+        g.fillRect(186, 552 + flowerSpeed, 6, 18 - flowerSpeed * 2);
+        g.fillRect(192, 564 - flowerSpeed * 2, 6, 12 + flowerSpeed * 2);
+        g.fillRect(198, 558 - flowerSpeed, 6, 12 - flowerSpeed);
+
+        g.fillRect(294 + flowerSpeed, 552, 12, 6);
+        g.fillRect(306 + flowerSpeed, 534, 6, 18);
+        plot(g, 300 + flowerSpeed, 546);
+
+        g.fillRect(378, 576, 6, 12);
+        g.fillRect(372 + flowerSpeed * 2, 570, 12 - flowerSpeed, 6);
+
+        g.fillRect(492, 480, 6, 18 - flowerSpeed * 2);
+        g.fillRect(498, 492 - flowerSpeed * 2, 6, 12 + flowerSpeed * 2);
+        g.fillRect(504, 480, flowerSpeed, 12);
+
+        g.fillRect(504 + flowerSpeed, 558, 6, 24 - flowerSpeed);
+        plot(g, 510 + flowerSpeed, 558);
+        plot(g, 498 + flowerSpeed, 576);
+
+    }
+
     public void skydetail(Graphics g, int start, Color color, int y) {
-        for (int i = start; i <= 600; i += 12) {
+        for (int i = start; i < 600; i += 12) {
             g.setColor(color);
             size = 6;
             plot(g, i, y);
