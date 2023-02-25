@@ -1,12 +1,16 @@
-//64050285 Aekapab  Sukkasem
-//64050543 Pariyakorn  Pramoonsin 
 package wanderland;
 
+//64050285 Aekapab  Sukkasem
+//64050543 Pariyakorn  Pramoonsin 
+import java.util.concurrent.TimeUnit;
 import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
+    long fps = 1000 / 10;
     int size = 6;
+    int cloudPosition = 0;
+    int cloudSpeed = 6;
 
     public static void main(String[] args) {
         Assignment2_64050285_64050543 m = new Assignment2_64050285_64050543();
@@ -22,20 +26,43 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     @Override
     public void run() {
         while (true) {
+            long start = System.currentTimeMillis();
 
+            // code here
+            System.out.println(cloudPosition);
+            cloudPosition += cloudSpeed;
+            if (cloudPosition >= 30 || cloudPosition <= 0)
+                cloudSpeed = -cloudSpeed;
             repaint();
+            // end code
+
+            long end = System.currentTimeMillis();
+            long sleep = fps - (end - start) - 1;
+            try {
+                TimeUnit.MILLISECONDS.sleep(sleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.decode("#baffca"));
+        g.setColor(Color.decode("#fa83fb"));
         g.fillRect(0, 0, 600, 600);
-        plot(g, 12, 18);
+        cloud(g);
+        bezierCurve(g, 0, 350, 230, 394, 360, 406, 599, 336);
+    }
+
+    public void cloud(Graphics g) {
+        g.setColor(Color.decode("#fdfecc"));
+        bresenhamsLine(g, 42 + cloudPosition, 84, 102 + cloudPosition, 84);
+
     }
 
     public void bezierCurve(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-        for (int i = 0; i <= 1000; i++) {
-            double t = i / 1000.0;
+        int lenght = Math.abs(x2 - x1);
+        for (int i = 0; i <= lenght; i += size) {
+            double t = i / (lenght * 1.0);
 
             int x = (int) (Math.pow((1 - t), 3) * x1
                     + 3 * t * Math.pow((1 - t), 2) * x2
@@ -55,8 +82,8 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         int dx = Math.abs(x2 - x1);
         int dy = Math.abs(y2 - y1);
 
-        int sx = (x1 < x2) ? 1 : -1;
-        int sy = (y1 < y2) ? 1 : -1;
+        int sx = (x1 < x2) ? size : -size;
+        int sy = (y1 < y2) ? size : -size;
         boolean isSwap = false;
 
         if (dy > dx) {
