@@ -48,8 +48,6 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.decode("#80ddea"));
-        g.fillRect(0, 0, 600, 600);
 
         // sky
         g.setColor(Color.decode("#bd75ff"));
@@ -81,13 +79,22 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(0, 180, 600, 35);
         skydetail(g, 0, Color.decode("#fff2aa"), 186);
 
+        // circle 116
+        g.setColor(Color.decode("#fefefe"));
+        g.fillOval(288, 155, 116, 116);
+        g.setColor(Color.decode("#fffdf2"));
+        midpointEllipse(g, 346, 213, 58, 58);
+
+        // water
+        g.setColor(Color.decode("#80ddea"));
+        g.fillRect(0, 216, 600, 384);
         g.setColor(Color.decode("#5494d8"));
         bresenhamsLine(g, 0, 216, 118, 216);
         bresenhamsLine(g, 0, 222, 71, 222);
         bresenhamsLine(g, 0, 228, 40, 228);
         bresenhamsLine(g, 534, 216, 600, 216);
         bresenhamsLine(g, 552, 222, 600, 222);
-        bresenhamsLine(g, 575, 228, 599, 228);
+        bresenhamsLine(g, 575, 228, 600, 228);
         bresenhamsLine(g, 582, 234, 600, 234);
         g.setColor(Color.decode("#54ccd8"));
         bresenhamsLine(g, 462, 216, 533, 216);
@@ -125,6 +132,123 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(492, 228, 17, 6);
         g.fillRect(515, 240, 13, 6);
         plot(g, 558, 240);
+        g.setColor(Color.decode("#fdfecc"));
+        g.fillRect(282, 240, 88, 12);
+        g.fillRect(240, 252, 30, 6);
+        plot(g, 390, 306);
+        plot(g, 425, 312);
+        g.fillRect(431, 318, 30, 6);
+        g.fillRect(485, 342, 24, 6);
+
+        g.setColor(Color.decode("#fef2b2"));
+        g.fillRect(288, 222, 120, 12);
+        g.fillRect(252, 228, 50, 12);
+        g.fillRect(342, 240, 107, 6);
+        g.fillRect(414, 222, 30, 12);
+        g.fillRect(360, 264, 30, 6);
+        g.fillRect(366, 246, 12, 6);
+        g.fillRect(414, 252, 24, 12);
+        g.fillRect(402, 258, 12, 6);
+        g.fillRect(432, 264, 30, 18);
+        g.fillRect(420, 276, 18, 6);
+        g.fillRect(420, 294, 36, 6);
+        g.fillRect(456, 300, 36, 6);
+        plot(g, 180, 270);
+        plot(g, 270, 240);
+        plot(g, 210, 300);
+
+        g.setColor(Color.decode("#feccce"));
+        g.fillRect(365, 222, 56, 6);
+        g.fillRect(444, 233, 54, 6);
+        plot(g, 492, 238);
+        g.fillRect(468, 244, 42, 6);
+        g.fillRect(456, 250, 12, 6);
+        g.fillRect(462, 288, 78, 12);
+        g.fillRect(438, 264, 82, 12);
+        g.fillRect(402, 270, 60, 6);
+        plot(g, 402, 264);
+        g.fillRect(354, 258, 30, 6);
+        g.fillRect(348, 252, 12, 6);
+        g.fillRect(402, 288, 60, 6);
+        plot(g, 540, 294);
+        g.fillRect(288, 240, 12, 6);
+
+        g.fillRect(162, 300, 48, 6);
+        g.fillRect(120, 306, 42, 6);
+        plot(g, 114, 300);
+        g.fillRect(174, 282, 35, 12);
+        bresenhamsLine(g, 156, 288, 174, 288);
+        g.fillRect(108, 288, 42, 6);
+        g.fillRect(186, 258, 12, 6);
+        bresenhamsLine(g, 174, 246, 271, 246);
+        g.fillRect(192, 228, 60, 6);
+        g.fillRect(185, 270, 12, 6);
+        g.fillRect(192, 276, 12, 6);
+        g.fillRect(144, 276, 30, 6);
+        plot(g, 18, 306);
+
+        g.setColor(Color.decode("#febfda"));
+        g.fillRect(426, 222, 30, 6);
+        g.fillRect(474, 228, 12, 6);
+        g.fillRect(462, 239, 30, 6);
+        g.fillRect(426, 252, 30, 6);// pb
+        g.fillRect(468, 252, 12, 6);// pb
+        g.fillRect(438, 264, 18, 6);
+        plot(g, 474, 270);
+        g.fillRect(486, 270, 42, 6);
+        g.fillRect(528, 276, 12, 6);
+        g.fillRect(420, 288, 54, 6);
+        g.fillRect(480, 288, 60, 6);
+        g.fillRect(384, 264, 18, 6);
+        plot(g, 462, 282);
+
+        g.fillRect(252, 228, 18, 6);
+        g.fillRect(222, 234, 30, 6);
+        g.fillRect(252, 240, 18, 6);
+        g.fillRect(108, 264, 90, 6);
+        g.fillRect(168, 258, 12, 6);
+        g.fillRect(156, 270, 18, 6);
+        g.fillRect(174, 276, 12, 6);
+        g.fillRect(132, 276, 12, 6);
+        g.fillRect(78, 282, 18, 6);
+        g.fillRect(72, 294, 12, 6);
+        g.fillRect(60, 288, 24, 6);
+        g.fillRect(90, 294, 84, 6);
+        g.fillRect(84, 300, 24, 6);
+        g.fillRect(108, 306, 12, 6);
+        g.fillRect(162, 306, 30, 6);
+        g.fillRect(108, 318, 88, 6);
+        g.fillRect(108, 264, 88, 6);
+        g.fillRect(24, 306, 60, 6);
+        g.fillRect(72, 270, 46, 6);
+        plot(g, 12, 306);
+
+        g.setColor(Color.decode("#a8f6fe"));
+        g.fillRect(378, 246, 30, 6);
+        g.fillRect(372, 252, 12, 6);
+        g.fillRect(489, 252, 30, 6);
+        g.fillRect(378, 270, 24, 6);
+        g.fillRect(552, 306, 24, 6);
+        g.fillRect(540, 312, 18, 6);
+        g.fillRect(498, 318, 42, 6);
+        g.fillRect(426, 336, 35, 6);
+        g.fillRect(456, 330, 12, 6);
+        g.fillRect(384, 318, 42, 6);
+        g.fillRect(390, 354, 30, 6);
+        g.fillRect(414, 360, 30, 6);
+
+        g.fillRect(204, 240, 24, 6);
+        g.fillRect(144, 246, 18, 6);
+        g.fillRect(126, 252, 24, 6);
+        g.fillRect(72, 258, 36, 6);
+        plot(g, 72, 264);
+        g.fillRect(42, 270, 30, 6);
+        g.fillRect(12, 282, 30, 6);
+        g.fillRect(78, 324, 24, 6);
+        g.fillRect(108, 336, 42, 6);
+        g.fillRect(150, 330, 36, 6);
+        g.fillRect(185, 336, 18, 6);
+        plot(g, 108, 330);
 
         // grass
         g.setColor(Color.decode("#bafeca"));
@@ -413,6 +537,51 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
             D += 2 * dy;
         }
 
+    }
+
+    private void midpointEllipse(Graphics g, int xc, int yc, int a, int b) {
+        // R1
+        int x = 0;
+        int y = b;
+
+        int d = Math.round(b * b - a * a * b + a * a / 4);
+        while (b * b * x <= a * a * y) {
+            plot(g, x + xc, y + yc);
+            plot(g, -x + xc, y + yc);
+            plot(g, x + xc, -y + yc);
+            plot(g, -x + xc, -y + yc);
+
+            x++;
+
+            d = d + 2 * b * b * x + b * b;
+
+            if (d >= 0) {
+                y--;
+                d = d - 2 * a * a * y;
+
+            }
+        }
+        // R2
+        x = a;
+        y = 0;
+
+        d = Math.round(a * a - b * b * a + b * b / 4);
+        while (b * b * x >= a * a * y) {
+            plot(g, x + xc, y + yc);
+            plot(g, -x + xc, y + yc);
+            plot(g, x + xc, -y + yc);
+            plot(g, -x + xc, -y + yc);
+
+            y++;
+
+            d = d + 2 * a * a * y + a * a;
+
+            if (d >= 0) {
+                x--;
+                d = d - 2 * b * b * x;
+
+            }
+        }
     }
 
     void plot(Graphics g, int x, int y) {
