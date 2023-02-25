@@ -27,6 +27,10 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
+        g.setColor(Color.decode("#80ddea"));
+        g.fillRect(0, 0, 600, 600);
+
+        // Sky
         size = 1;
         g.setColor(Color.decode("#bd75ff"));
         g.fillRect(0, 0, 600, 36);
@@ -54,9 +58,10 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
         skydetail(g,6,Color.decode("#fdfec6"),174);
         g.setColor(Color.decode("#fdfec6"));
-        g.fillRect(0, 180, 600, 35);
+        g.fillRect(0, 180, 600, 36);
         skydetail(g,0,Color.decode("#fff2aa"),186);
 
+        // water
         size = 6;
         g.setColor(Color.decode("#5494d8"));
         bresenhamsLine(g, 0, 216, 118, 216);
@@ -66,6 +71,89 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 552, 222, 600, 222);
         bresenhamsLine(g, 575, 228, 600, 228);
         bresenhamsLine(g, 582, 234, 600, 234);
+        g.setColor(Color.decode("#54ccd8"));
+        bresenhamsLine(g, 462, 216, 533, 216);
+        bresenhamsLine(g, 516, 222, 551, 222);
+        bresenhamsLine(g, 498, 222, 504, 222);
+
+        bresenhamsLine(g, 192, 217, 259, 217);
+        bresenhamsLine(g, 162, 222, 180, 222);
+        bresenhamsLine(g, 72, 222, 143, 222);
+        bresenhamsLine(g, 120, 216, 157, 216);
+        bresenhamsLine(g, 42, 228, 109, 228);
+        bresenhamsLine(g, 83, 234, 0, 234);
+        g.setColor(Color.decode("#68ced9"));
+        g.fillRect(0, 240, 47, 23);
+        g.fillRect(0, 269, 12, 12);
+        g.fillRect(12, 269, 12, 6);
+        g.fillRect(24, 263, 11, 6);
+        g.fillRect(43, 252, 16, 11);
+        g.fillRect(47, 240, 12, 6);
+        g.fillRect(85, 234, 118, 6);
+        g.fillRect(150, 228, 41, 6);
+        g.fillRect(65, 246, 72, 6);
+        g.fillRect(59, 252, 42, 6);
+        g.fillRect(120, 240, 47, 6);
+        plot(g, 570, 228);
+
+        g.fillRect(582, 240, 18, 30);
+        g.fillRect(564, 258, 18, 12);
+        bresenhamsLine(g, 552, 258, 564, 258);
+        g.fillRect(588, 275, 12, 12);
+        plot(g, 594, 287);
+        plot(g, 582, 275);
+        bresenhamsLine(g, 528, 246, 600, 246);
+        bresenhamsLine(g, 504, 234, 581, 234);
+        g.fillRect(492, 228, 17, 6);
+        g.fillRect(515, 240, 13, 6);
+        plot(g, 558, 240);
+
+
+        // grass
+        g.setColor(Color.decode("#bafeca"));
+        bresenhamsLine(g, 0, 354, 23, 354);
+        bresenhamsLine(g, 0, 360, 65, 360);
+        bresenhamsLine(g, 0, 366, 107, 366);
+        bresenhamsLine(g, 0, 372, 137, 372);
+        bresenhamsLine(g, 0, 378, 173, 378);
+        bresenhamsLine(g, 444, 378, 600, 378);
+        bresenhamsLine(g, 462, 372, 600, 372);
+        bresenhamsLine(g, 468, 366, 600, 366);
+        plot(g, 468, 360);
+        plot(g, 473, 354);
+        plot(g, 504, 360);
+        bresenhamsLine(g, 552, 360, 600, 360);
+        bresenhamsLine(g, 570, 354, 600, 354);
+        bresenhamsLine(g, 582, 348, 600, 348);
+        bresenhamsLine(g, 594, 342, 600, 342);
+        g.fillRect(0, 384, 600, 216);
+
+        g.setColor(Color.decode("#fdfecc"));
+        bresenhamsLine(g, 0, 348, 35, 348);
+        bresenhamsLine(g, 24, 354, 71, 354);
+        bresenhamsLine(g, 66, 360, 113, 360);
+        bresenhamsLine(g, 108, 366, 143, 366);
+        bresenhamsLine(g, 138, 372, 179, 372);
+        bresenhamsLine(g, 174, 378, 401, 384);
+        bresenhamsLine(g, 390, 378, 443, 378);
+        bresenhamsLine(g, 438, 372, 461, 372);
+        bresenhamsLine(g, 474, 366, 500, 366);
+        bresenhamsLine(g, 510, 366, 527, 366);
+        bresenhamsLine(g, 522, 360, 551, 360);
+        bresenhamsLine(g, 552, 354, 569, 354);
+        bresenhamsLine(g, 552, 348, 581, 348);
+        bresenhamsLine(g, 576, 342, 593, 342);
+        bresenhamsLine(g, 582, 336, 600, 336);
+        bresenhamsLine(g, 546, 336, 553, 336);
+        plot(g, 552, 342);
+        plot(g, 582, 330);
+        bresenhamsLine(g, 90, 348, 90, 359);
+        bresenhamsLine(g, 48, 330, 48, 353);
+        plot(g, 53, 330);
+        bresenhamsLine(g, 18, 324, 18, 347);
+        bresenhamsLine(g, 23, 342, 35, 342);
+        bresenhamsLine(g, 30, 336, 40, 336);
+
 
     }
 
