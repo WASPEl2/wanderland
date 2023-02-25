@@ -94,7 +94,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 0, 228, 40, 228);
         bresenhamsLine(g, 534, 216, 600, 216);
         bresenhamsLine(g, 552, 222, 600, 222);
-        bresenhamsLine(g, 575, 228, 600, 228);
+        bresenhamsLine(g, 575, 228, 599, 228);
         bresenhamsLine(g, 582, 234, 600, 234);
         g.setColor(Color.decode("#54ccd8"));
         bresenhamsLine(g, 462, 216, 533, 216);
@@ -297,6 +297,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
         cloud(g);
         flower(g);
+        mainOpject(g);
 
     }
 
@@ -476,6 +477,34 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
             size = 6;
             plot(g, i, y);
         }
+    }
+
+    public void mainOpject(Graphics g) {
+        // ear
+        g.setColor(Color.decode("#937c8e"));
+        g.fillRect(204, 258, 36, 18);
+        g.fillRect(366, 276, 12, 12);
+        g.fillRect(378, 282, 18, 24);
+
+        g.setColor(Color.decode("#536198"));
+        g.fillRect(210, 276, 18, 18);
+        g.fillRect(204, 270, 12, 12);
+        g.fillRect(198, 258, 6, 12);
+        g.fillRect(204, 252, 36, 6);
+        g.fillRect(240, 258, 30, 6);
+        plot(g, 240, 262);
+        plot(g, 234, 270);
+
+        g.fillRect(354, 270, 12, 12);
+        g.fillRect(366, 270, 12, 6);
+        g.fillRect(378, 276, 18, 6);
+        g.fillRect(396, 282, 6, 18);
+        g.fillRect(372, 288, 6, 12);
+        g.fillRect(378, 300, 6, 12);
+        g.fillRect(384, 306, 6, 18);
+        plot(g, 390, 300);
+        plot(g, 366, 282);
+
     }
 
     public void bezierCurve(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
