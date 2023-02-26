@@ -7,11 +7,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
-    long fps = 1000 / 1;
+    long fps = 1000 / 3;
     int size = 6;
     int cloudPosition = 0;
     int cloudSpeed = 6;
     int flowerSpeed = 6;
+    int cntFrame = 0;
+    int tmp = 0;
 
     public static void main(String[] args) {
         Assignment2_64050285_64050543 m = new Assignment2_64050285_64050543();
@@ -34,6 +36,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
             if (cloudPosition >= 30 || cloudPosition <= 0)
                 cloudSpeed = -cloudSpeed;
             flowerSpeed = (flowerSpeed + 6) % 12;
+            cntFrame = (++cntFrame) % 3;
             repaint();
             // end code
 
@@ -474,12 +477,99 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
     public void skydetail(Graphics g, int start, Color color, int y) {
         for (int i = start; i < 600; i += 12) {
             g.setColor(color);
-            size = 6;
             plot(g, i, y);
         }
     }
 
     public void mainOpject(Graphics g) {
+        // body color
+        g.setColor(Color.decode("#feebf9"));
+        g.fillRect(204, 324, 18, 18);
+        g.fillRect(198, 366, 18, 48);
+        g.fillRect(234, 258, 54, 156);
+        g.fillRect(288, 252, 60, 168);
+        g.fillRect(348, 282, 30, 102);
+        g.fillRect(348, 384, 18, 24);
+        g.fillRect(378, 348, 6, 18);
+
+        plot(g, 198, 318);
+        plot(g, 378, 312);
+
+        g.setColor(Color.decode("#fec2ee"));
+        plot(g, 246, 264);
+        plot(g, 240, 270);
+        plot(g, 228, 276);
+        plot(g, 234, 282);
+        plot(g, 240, 288);
+        plot(g, 318, 294);
+        plot(g, 198, 324);
+        plot(g, 204, 330);
+        plot(g, 210, 336);
+        plot(g, 204, 390);
+        plot(g, 198, 396);
+        plot(g, 204, 402);
+        plot(g, 198, 408);
+        plot(g, 300, 330);
+        plot(g, 336, 336);
+        plot(g, 360, 390);
+
+        g.fillRect(192, 378, 6, 30);
+        g.fillRect(198, 414, 24, 12);
+        g.fillRect(294, 276, 24, 24);
+        g.fillRect(300, 270, 12, 36);
+        g.fillRect(306, 300, 36, 12);
+        g.fillRect(240, 300, 12, 18);
+        g.fillRect(234, 318, 12, 18);
+        g.fillRect(222, 324, 12, 78);
+        g.fillRect(204, 342, 18, 24);
+        g.fillRect(210, 408, 12, 8);
+        g.fillRect(198, 414, 102, 12);
+        g.fillRect(210, 426, 90, 12);
+        g.fillRect(252, 438, 30, 6);
+        g.fillRect(294, 312, 6, 18);
+        g.fillRect(294, 312, 6, 18);
+        g.fillRect(288, 342, 12, 6);
+        g.fillRect(306, 348, 12, 12);
+        g.fillRect(342, 324, 6, 12);
+        g.fillRect(216, 372, 42, 42);
+        g.fillRect(222, 366, 36, 6);
+        g.fillRect(234, 348, 18, 18);
+        g.fillRect(300, 420, 42, 24);
+        g.fillRect(330, 414, 12, 6);
+        g.fillRect(342, 408, 12, 24);
+        g.fillRect(354, 396, 6, 12);
+
+        g.setColor(Color.decode("#fea3e6"));
+        plot(g, 240, 294);
+        plot(g, 318, 300);
+        plot(g, 342, 336);
+        plot(g, 336, 432);
+        plot(g, 306, 444);
+
+        g.fillRect(312, 438, 24, 6);
+        g.fillRect(228, 432, 12, 12);
+
+        g.setColor(Color.decode("#fdfecc"));
+        g.fillRect(252, 264, 18, 6);
+        g.fillRect(270, 258, 18, 6);
+        g.fillRect(288, 252, 12, 6);
+        g.fillRect(330, 252, 12, 6);
+        g.fillRect(342, 258, 6, 12);
+        g.fillRect(348, 270, 6, 18);
+        plot(g, 210, 318);
+
+        g.setColor(Color.decode("#fefefe"));
+        g.fillRect(330, 264, 12, 24);
+        g.fillRect(312, 444, 18, 6);
+        g.fillRect(264, 444, 18, 6);
+
+        plot(g, 276, 246);
+        plot(g, 330, 270);
+        plot(g, 204, 318);
+
+        g.setColor(Color.decode("#feebf9"));
+        plot(g, 330, 270);
+
         // ear
         g.setColor(Color.decode("#937c8e"));
         g.fillRect(204, 258, 36, 18);
@@ -501,9 +591,159 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(396, 282, 6, 18);
         g.fillRect(372, 288, 6, 12);
         g.fillRect(378, 300, 6, 12);
-        g.fillRect(384, 306, 6, 18);
+        g.fillRect(384, 306, 6, 12);
         plot(g, 390, 300);
         plot(g, 366, 282);
+
+        // line cute head
+        g.setColor(Color.decode("#536198"));
+        plot(g, 228, 282);
+        plot(g, 222, 306);
+        plot(g, 342, 252);
+        plot(g, 354, 282);
+        plot(g, 342, 300);
+        plot(g, 312, 300);
+
+        g.fillRect(216, 288, 24, 18);
+        g.fillRect(228, 300, 18, 18);
+        g.fillRect(222, 300, 24, 12);
+        g.fillRect(228, 312, 12, 6);
+
+        g.fillRect(270, 252, 18, 6);
+        g.fillRect(288, 246, 12, 6);
+        g.fillRect(300, 240, 30, 6);
+        g.fillRect(330, 246, 12, 6);
+        g.fillRect(348, 258, 6, 12);
+
+        g.fillRect(354, 264, 6, 24);
+
+        g.fillRect(312, 276, 12, 6);
+        g.fillRect(306, 282, 6, 18);
+        g.fillRect(318, 306, 24, 6);
+        g.fillRect(348, 288, 6, 12);
+
+        // cut body sort by left to right
+        g.fillRect(216, 318, 18, 6);
+        g.fillRect(198, 312, 18, 6);
+        g.fillRect(192, 318, 6, 12);
+        g.fillRect(204, 336, 6, 12);
+        g.fillRect(198, 348, 6, 18);
+        g.fillRect(222, 330, 6, 18);
+        g.fillRect(216, 348, 6, 30);
+        g.fillRect(192, 366, 6, 12);
+        g.fillRect(186, 378, 6, 30);
+        g.fillRect(210, 390, 6, 12);
+        g.fillRect(192, 408, 6, 12);
+        g.fillRect(210, 432, 12, 6);
+        g.fillRect(222, 438, 12, 6);
+        g.fillRect(222, 402, 6, 24);
+        g.fillRect(228, 420, 6, 12);
+        g.fillRect(282, 432, 18, 6);
+        g.fillRect(306, 450, 24, 6);
+        g.fillRect(348, 420, 6, 12);
+        g.fillRect(354, 408, 6, 12);
+        g.fillRect(360, 396, 6, 12);
+        g.fillRect(366, 384, 6, 12);
+        g.fillRect(378, 366, 6, 12);
+
+        plot(g, 228, 324);
+        plot(g, 198, 330);
+        plot(g, 204, 360);
+        plot(g, 210, 366);
+        plot(g, 198, 420);
+        plot(g, 204, 426);
+        plot(g, 216, 402);
+        plot(g, 234, 432);
+        plot(g, 294, 438);
+        plot(g, 300, 444);
+        plot(g, 330, 444);
+        plot(g, 336, 438);
+        plot(g, 342, 432);
+        plot(g, 372, 378);
+
+        // Mouth
+        g.fillRect(306, 342, 24, 6);
+        plot(g, 306, 348);
+        plot(g, 318, 348);
+        plot(g, 312, 354);
+
+        // animation
+        animated(g);
+
+    }
+
+    public void animated(Graphics g) {
+        int eyeAction = cntFrame % 2 * 6;
+        // eye
+        g.setColor(Color.decode("#536198"));
+        g.fillRect(306 - eyeAction, 312 + eyeAction, 6 + eyeAction, 12 - eyeAction);
+        g.fillRect(330 + eyeAction, 318, 6, 12 - eyeAction);
+        plot(g, 306 + eyeAction, 324);
+        plot(g, 330, 330 - eyeAction);
+
+        // hand
+        g.setColor(Color.decode("#fec2ee"));
+        plot(g, 258, 324);
+        g.fillRect(360, 336, 6, 18);
+        g.fillRect(246, 330, 18, 6);
+        g.fillRect(252, 336, 6, 12);
+
+        g.setColor(Color.decode("#536198"));
+        plot(g, 360, 324);
+        plot(g, 366, 330);
+        plot(g, 354, 330);
+        plot(g, 342, 342);
+
+        plot(g, 240, 330);
+        plot(g, 252, 312);
+        plot(g, 258, 318);
+        plot(g, 276, 330);
+
+        g.fillRect(378, 318, 6, 12);
+        g.fillRect(372, 324, 6, 12);
+        g.fillRect(348, 336, 12, 6);
+        g.fillRect(348, 348, 6, 12);
+        g.fillRect(378, 336, 6, 12);
+        g.fillRect(384, 348, 6, 18);
+
+        g.fillRect(240, 366, 6, 12);
+        g.fillRect(234, 336, 6, 30);
+        g.fillRect(246, 318, 6, 12);
+        g.fillRect(264, 324, 12, 6);
+        g.fillRect(270, 336, 6, 12);
+        g.fillRect(276, 348, 6, 12);
+
+        g.setColor(Color.decode("#fefefe"));
+        plot(g, 252, 318);
+        plot(g, 270, 330);
+        // plot(g, 276, 330);
+
+        plot(g, 348, 342);
+        plot(g, 360, 330);
+
+        // foot
+        g.setColor(Color.decode("#fec2ee"));
+        plot(g, 270, 408);
+        g.fillRect(258, 390, 6, 24);
+        g.fillRect(264, 402, 6, 12);
+
+        g.setColor(Color.decode("#fea3e6"));
+        plot(g, 258, 444);
+        g.fillRect(222, 384, 6, 18);
+        g.fillRect(228, 396, 6, 24);
+        g.fillRect(234, 414, 6, 18);
+        g.fillRect(240, 432, 12, 12);
+        g.fillRect(264, 438, 12, 6);
+
+        g.setColor(Color.decode("#536198"));
+        plot(g, 276, 444);
+        plot(g, 282, 438);
+        plot(g, 234, 432);
+
+        g.fillRect(216, 378, 6, 24);
+        g.fillRect(240, 438, 6 + tmp * 2, 6);
+        g.fillRect(234, 444, 24, 6);
+        g.fillRect(252, 450, 24, 6);
 
     }
 
