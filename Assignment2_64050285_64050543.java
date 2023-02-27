@@ -7,13 +7,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
-    long fps = 1000 / 3;
+    long fps = 1000 / 4;
     int size = 6;
     int cloudPosition = 0;
     int cloudSpeed = 6;
     int flowerSpeed = 6;
     int cntFrame = 0;
-    int tmp = 0;
 
     public static void main(String[] args) {
         Assignment2_64050285_64050543 m = new Assignment2_64050285_64050543();
@@ -33,10 +32,10 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
             // code here
             cloudPosition += cloudSpeed;
-            if (cloudPosition >= 30 || cloudPosition <= 0)
-                cloudSpeed = -cloudSpeed;
+            if (cloudPosition >= 30)
+                cloudPosition = 0;
             flowerSpeed = (flowerSpeed + 6) % 12;
-            cntFrame = (++cntFrame) % 3;
+            cntFrame = (++cntFrame) % 6;
             repaint();
             // end code
 
@@ -56,31 +55,31 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.setColor(Color.decode("#bd75ff"));
         g.fillRect(0, 0, 600, 36);
 
-        skydetail(g, 0, Color.decode("#ff7bff"), 18);
-        skydetail(g, 6, Color.decode("#ff7bff"), 30);
+        sicksack(g, 0, 18, 599, Color.decode("#ff7bff"));
+        sicksack(g, 6, 30, 599, Color.decode("#ff7bff"));
         g.setColor(Color.decode("#ff7bff"));
         g.fillRect(0, 36, 600, 45);
-        skydetail(g, 0, Color.decode("#bd75ff"), 42);
+        sicksack(g, 0, 42, 599, Color.decode("#bd75ff"));
 
-        skydetail(g, 0, Color.decode("#ffbcda"), 72);
+        sicksack(g, 0, 72, 599, Color.decode("#ffbcda"));
         g.setColor(Color.decode("#ffbcda"));
         g.fillRect(0, 78, 600, 30);
-        skydetail(g, 6, Color.decode("#ff7bff"), 84);
+        sicksack(g, 6, 84, 599, Color.decode("#ff7bff"));
 
-        skydetail(g, 6, Color.decode("#ffcace"), 102);
+        sicksack(g, 6, 102, 599, Color.decode("#ffcace"));
         g.setColor(Color.decode("#ffcace"));
         g.fillRect(0, 108, 600, 37);
-        skydetail(g, 0, Color.decode("#ffbcda"), 115);
+        sicksack(g, 0, 115, 599, Color.decode("#ffbcda"));
 
-        skydetail(g, 6, Color.decode("#fff2aa"), 138);
+        sicksack(g, 6, 138, 599, Color.decode("#fff2aa"));
         g.setColor(Color.decode("#fff2aa"));
         g.fillRect(0, 144, 600, 36);
-        skydetail(g, 0, Color.decode("#ffcace"), 150);
+        sicksack(g, 0, 150, 599, Color.decode("#ffcace"));
 
-        skydetail(g, 6, Color.decode("#fdfec6"), 174);
+        sicksack(g, 6, 174, 599, Color.decode("#fdfec6"));
         g.setColor(Color.decode("#fdfec6"));
         g.fillRect(0, 180, 600, 35);
-        skydetail(g, 0, Color.decode("#fff2aa"), 186);
+        sicksack(g, 0, 186, 599, Color.decode("#fff2aa"));
 
         // circle 116
         g.setColor(Color.decode("#fefefe"));
@@ -253,7 +252,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(185, 336, 18, 6);
         plot(g, 108, 330);
 
-        // grass
+        // bg grass
         g.setColor(Color.decode("#bafeca"));
         bresenhamsLine(g, 0, 354, 23, 354);
         bresenhamsLine(g, 0, 360, 65, 360);
@@ -298,142 +297,191 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 23, 342, 35, 342);
         bresenhamsLine(g, 30, 336, 40, 336);
 
+        shadow(g);
         cloud(g);
         flower(g);
         mainOpject(g);
 
     }
 
+    public void shadow(Graphics g) {
+        Color c = Color.decode("#8adf9d");
+        g.setColor(c);
+        plot(g, 288, 438);
+        plot(g, 282, 444);
+        plot(g, 198, 474);
+        plot(g, 354, 486);
+        plot(g, 342, 498);
+        plot(g, 258, 546);
+
+        g.fillRect(330, 450, 12, 6);
+        sicksack(g, 264, 450, 42, c);
+        sicksack(g, 198, 456, 150, c);
+        sicksack(g, 216, 462, 150, c);
+        sicksack(g, 222, 468, 126, c);
+        sicksack(g, 204, 474, 150, c);
+        sicksack(g, 186, 480, 174, c);
+        sicksack(g, 204, 486, 150, c);
+        sicksack(g, 198, 492, 156, c);
+        sicksack(g, 192, 498, 150, c);
+        sicksack(g, 198, 504, 138, c);
+        sicksack(g, 204, 510, 138, c);
+        sicksack(g, 198, 516, 126, c);
+        sicksack(g, 204, 522, 126, c);
+        sicksack(g, 210, 528, 102, c);
+        sicksack(g, 216, 534, 90, c);
+        sicksack(g, 234, 540, 54, c);
+        sicksack(g, 240, 546, 42, c);
+
+        sicksack(g, 222, 528, 18, Color.decode("#bafeca"));
+
+    }
+
+    public void sicksack(Graphics g, int xs, int y, int xpixel, Color color) {
+        g.setColor(color);
+        int xn = xs + xpixel;
+        for (int i = xs; i <= xn; i += 12) {
+            plot(g, i, y);
+        }
+    }
+
     public void cloud(Graphics g) {
+        g.translate(cloudPosition, 0);
         // cloud 1
         g.setColor(Color.decode("#fdfecc"));
-        bresenhamsLine(g, 90 + cloudPosition, 54, 113 + cloudPosition, 54);
-        bresenhamsLine(g, 72 + cloudPosition, 60, 113 + cloudPosition, 60);
-        bresenhamsLine(g, 60 + cloudPosition, 66, 125 + cloudPosition, 66);
-        bresenhamsLine(g, 48 + cloudPosition, 72, 131 + cloudPosition, 72);
-        bresenhamsLine(g, 48 + cloudPosition, 78, 137 + cloudPosition, 78);
-        bresenhamsLine(g, 42 + cloudPosition, 84, 137 + cloudPosition, 84);
+        bresenhamsLine(g, 90, 54, 113, 54);
+        bresenhamsLine(g, 72, 60, 113, 60);
+        bresenhamsLine(g, 60, 66, 125, 66);
+        bresenhamsLine(g, 48, 72, 131, 72);
+        bresenhamsLine(g, 48, 78, 137, 78);
+        bresenhamsLine(g, 42, 84, 137, 84);
         g.setColor(Color.decode("#ccd9fe"));
-        bresenhamsLine(g, 66 + cloudPosition, 72, 89 + cloudPosition, 72);
-        bresenhamsLine(g, 54 + cloudPosition, 78, 101 + cloudPosition, 78);
-        bresenhamsLine(g, 54 + cloudPosition, 84, 119 + cloudPosition, 84);
-        bresenhamsLine(g, 42 + cloudPosition, 90, 125 + cloudPosition, 90);
+        bresenhamsLine(g, 66, 72, 89, 72);
+        bresenhamsLine(g, 54, 78, 101, 78);
+        bresenhamsLine(g, 54, 84, 119, 84);
+        bresenhamsLine(g, 42, 90, 125, 90);
         g.setColor(Color.decode("#cbf6fe"));
-        plot(g, 78 + cloudPosition, 78);
-        bresenhamsLine(g, 78 + cloudPosition, 66, 107 + cloudPosition, 66);
-        bresenhamsLine(g, 90 + cloudPosition, 72, 113 + cloudPosition, 72);
-        bresenhamsLine(g, 102 + cloudPosition, 78, 125 + cloudPosition, 78);
-        bresenhamsLine(g, 66 + cloudPosition, 84, 77 + cloudPosition, 84);
-        bresenhamsLine(g, 120 + cloudPosition, 84, 131 + cloudPosition, 84);
-        bresenhamsLine(g, 72 + cloudPosition, 90, 101 + cloudPosition, 90);
-        bresenhamsLine(g, 126 + cloudPosition, 90, 137 + cloudPosition, 90);
+        plot(g, 78, 78);
+        bresenhamsLine(g, 78, 66, 107, 66);
+        bresenhamsLine(g, 90, 72, 113, 72);
+        bresenhamsLine(g, 102, 78, 125, 78);
+        bresenhamsLine(g, 66, 84, 77, 84);
+        bresenhamsLine(g, 120, 84, 131, 84);
+        bresenhamsLine(g, 72, 90, 101, 90);
+        bresenhamsLine(g, 126, 90, 137, 90);
 
         // cloud 2
         g.setColor(Color.decode("#fdfecc"));
-        plot(g, 204 + cloudPosition, 114);
-        plot(g, 210 + cloudPosition, 120);
-        plot(g, 222 + cloudPosition, 120);
-        bresenhamsLine(g, 186 + cloudPosition, 108, 197 + cloudPosition, 108);
+        plot(g, 204, 114);
+        plot(g, 210, 120);
+        plot(g, 222, 120);
+        bresenhamsLine(g, 186, 108, 197, 108);
         g.setColor(Color.decode("#cbf6fe"));
-        plot(g, 216 + cloudPosition, 120);
-        bresenhamsLine(g, 174 + cloudPosition, 108, 185 + cloudPosition, 108);
-        bresenhamsLine(g, 168 + cloudPosition, 114, 197 + cloudPosition, 114);
-        bresenhamsLine(g, 156 + cloudPosition, 120, 209 + cloudPosition, 120);
-        bresenhamsLine(g, 156 + cloudPosition, 126, 221 + cloudPosition, 126);
+        plot(g, 216, 120);
+        bresenhamsLine(g, 174, 108, 185, 108);
+        bresenhamsLine(g, 168, 114, 197, 114);
+        bresenhamsLine(g, 156, 120, 209, 120);
+        bresenhamsLine(g, 156, 126, 221, 126);
         g.setColor(Color.decode("#ccd9fe"));
-        plot(g, 174 + cloudPosition, 114);
-        plot(g, 198 + cloudPosition, 114);
-        bresenhamsLine(g, 162 + cloudPosition, 120, 197 + cloudPosition, 120);
-        bresenhamsLine(g, 156 + cloudPosition, 126, 173 + cloudPosition, 126);
-        bresenhamsLine(g, 180 + cloudPosition, 126, 203 + cloudPosition, 126);
-        plot(g, 222 + cloudPosition, 126);
+        plot(g, 174, 114);
+        plot(g, 198, 114);
+        bresenhamsLine(g, 162, 120, 197, 120);
+        bresenhamsLine(g, 156, 126, 173, 126);
+        bresenhamsLine(g, 180, 126, 203, 126);
+        plot(g, 222, 126);
 
         // cloud 3
         g.setColor(Color.decode("#fdfecc"));
-        plot(g, 474 + cloudPosition, 90);
-        g.fillRect(432 + cloudPosition, 96, 48, 12);
-        bresenhamsLine(g, 426 + cloudPosition, 108, 437 + cloudPosition, 108);
-        bresenhamsLine(g, 474 + cloudPosition, 114, 485 + cloudPosition, 114);
+        plot(g, 474, 90);
+        g.fillRect(432, 96, 48, 12);
+        bresenhamsLine(g, 426, 108, 437, 108);
+        bresenhamsLine(g, 474, 114, 485, 114);
 
         g.setColor(Color.decode("#cbf6fe"));
-        plot(g, 450 + cloudPosition, 96);
-        plot(g, 426 + cloudPosition, 102);
-        plot(g, 420 + cloudPosition, 108);
-        bresenhamsLine(g, 468 + cloudPosition, 102, 485 + cloudPosition, 102);
-        bresenhamsLine(g, 438 + cloudPosition, 108, 473 + cloudPosition, 108);
-        bresenhamsLine(g, 414 + cloudPosition, 114, 473 + cloudPosition, 114);
-        bresenhamsLine(g, 492 + cloudPosition, 114, 509 + cloudPosition, 114);
-        bresenhamsLine(g, 408 + cloudPosition, 120, 419 + cloudPosition, 120);
+        plot(g, 450, 96);
+        plot(g, 426, 102);
+        plot(g, 420, 108);
+        bresenhamsLine(g, 468, 102, 485, 102);
+        bresenhamsLine(g, 438, 108, 473, 108);
+        bresenhamsLine(g, 414, 114, 473, 114);
+        bresenhamsLine(g, 492, 114, 509, 114);
+        bresenhamsLine(g, 408, 120, 419, 120);
         g.setColor(Color.decode("#ccd9fe"));
-        plot(g, 468 + cloudPosition, 90);
-        plot(g, 456 + cloudPosition, 96);
-        plot(g, 432 + cloudPosition, 114);
-        plot(g, 486 + cloudPosition, 114);
-        bresenhamsLine(g, 480 + cloudPosition, 96, 497 + cloudPosition, 96);
-        bresenhamsLine(g, 486 + cloudPosition, 102, 503 + cloudPosition, 102);
-        bresenhamsLine(g, 474 + cloudPosition, 108, 533 + cloudPosition, 108);
-        bresenhamsLine(g, 444 + cloudPosition, 114, 467 + cloudPosition, 114);
-        bresenhamsLine(g, 510 + cloudPosition, 114, 539 + cloudPosition, 114);
-        bresenhamsLine(g, 420 + cloudPosition, 120, 521 + cloudPosition, 120);
+        plot(g, 468, 90);
+        plot(g, 456, 96);
+        plot(g, 432, 114);
+        plot(g, 486, 114);
+        bresenhamsLine(g, 480, 96, 497, 96);
+        bresenhamsLine(g, 486, 102, 503, 102);
+        bresenhamsLine(g, 474, 108, 533, 108);
+        bresenhamsLine(g, 444, 114, 467, 114);
+        bresenhamsLine(g, 510, 114, 539, 114);
+        bresenhamsLine(g, 420, 120, 521, 120);
+        g.translate(-cloudPosition, 0);
 
     }
 
     public void flower(Graphics g) {
+        g.translate(flowerSpeed, 0);
         // flower petals
         g.setColor(Color.decode("#d6adfe"));
-        plot(g, 18 + flowerSpeed, 396);
-        plot(g, 42 + flowerSpeed, 396);
-        plot(g, 30 + flowerSpeed, 408);
-        g.fillRect(24 + flowerSpeed, 390, 18, 18);
+        plot(g, 18, 396);
+        plot(g, 42, 396);
+        plot(g, 30, 408);
+        g.fillRect(24, 390, 18, 18);
 
         g.setColor(Color.decode("#fe8aec"));
         g.fillRect(66, 456 + flowerSpeed, 12, 6);
-        g.fillRect(60 + flowerSpeed, 462, 24, 18);
-        g.fillRect(54 + flowerSpeed, 468, 6, 12 - flowerSpeed);
-        g.fillRect(60 + flowerSpeed * 5, 480 - flowerSpeed * 2, 18 - flowerSpeed * 2, 6);
+        g.fillRect(60, 462, 24, 18);
+        g.fillRect(54, 468, 6, 12 - flowerSpeed);
+        g.fillRect(60 + flowerSpeed * 4, 480 - flowerSpeed * 2, 18 - flowerSpeed * 2, 6);
 
         g.setColor(Color.decode("#d8a9ff"));
-        plot(g, 102 + flowerSpeed, 558);
-        plot(g, 126 + flowerSpeed, 558);
-        g.fillRect(108 + flowerSpeed, 552, 18, 18);
+        plot(g, 102, 558);
+        plot(g, 126, 558);
+        g.fillRect(108, 552, 18, 18);
 
+        g.translate(flowerSpeed, 0);
         g.setColor(Color.decode("#d6adfe"));
-        plot(g, 174 + flowerSpeed * 2, 540);
-        plot(g, 198 + flowerSpeed * 2, 540);
-        g.fillRect(180 + flowerSpeed * 2, 534, 18, 18);
+        plot(g, 174, 540);
+        plot(g, 198, 540);
+        g.fillRect(180, 534, 18, 18);
+        g.translate(-flowerSpeed, 0);
 
         g.setColor(Color.decode("#fe89ed"));
-        plot(g, 294 + flowerSpeed, 522);
-        plot(g, 318 + flowerSpeed, 522);
-        g.fillRect(300 + flowerSpeed, 516, 18, 18);
+        plot(g, 294, 522);
+        plot(g, 318, 522);
+        g.fillRect(300, 516, 18, 18);
 
         g.setColor(Color.decode("#d8a8ff"));
-        plot(g, 360 + flowerSpeed, 558);
-        plot(g, 384 + flowerSpeed, 558);
-        g.fillRect(366 + flowerSpeed, 552, 18, 18);
+        plot(g, 360, 558);
+        plot(g, 384, 558);
+        g.fillRect(366, 552, 18, 18);
 
         g.setColor(Color.decode("#d6acfe"));
-        plot(g, 492 + flowerSpeed, 546);
-        plot(g, 522 + flowerSpeed, 546);
-        g.fillRect(498 + flowerSpeed, 540, 24, 18);
+        plot(g, 492, 546);
+        plot(g, 522, 546);
+        g.fillRect(498, 540, 24, 18);
 
         g.setColor(Color.decode("#fe8aec"));
-        plot(g, 474 + flowerSpeed, 468);
-        g.fillRect(486 + flowerSpeed, 456, 18, 6);
-        g.fillRect(480 + flowerSpeed, 462, 30, 12);
-        g.fillRect(480 + flowerSpeed, 474, 24, 6);
+        plot(g, 474, 468);
+        g.fillRect(486, 456, 18, 6);
+        g.fillRect(480, 462, 30, 12);
+        g.fillRect(480, 474, 24, 6);
 
         // center of flower
         g.setColor(Color.decode("#fdffca"));
-        plot(g, 30 + flowerSpeed, 396);
-        plot(g, 114 + flowerSpeed, 558);
-        plot(g, 186 + flowerSpeed * 2, 540);
-        plot(g, 306 + flowerSpeed, 522);
-        plot(g, 372 + flowerSpeed, 558);
-        plot(g, 486 + flowerSpeed, 468);
-        plot(g, 492 + flowerSpeed, 462);
-        g.fillRect(66 + flowerSpeed, 468, 6 + flowerSpeed, 6);
-        g.fillRect(504 + flowerSpeed, 546, 12, 6);
+        plot(g, 30, 396);
+        plot(g, 114, 558);
+        plot(g, 186 + flowerSpeed, 540);
+        plot(g, 306, 522);
+        plot(g, 372, 558);
+        plot(g, 486, 468);
+        plot(g, 492, 462);
+        g.fillRect(66, 468, 6 + flowerSpeed, 6);
+        g.fillRect(504, 546, 12, 6);
+
+        g.translate(-flowerSpeed, 0);
 
         // stick of flower sort by left to right
         g.setColor(Color.decode("#6ac47e"));
@@ -472,13 +520,6 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         plot(g, 510 + flowerSpeed, 558);
         plot(g, 498 + flowerSpeed, 576);
 
-    }
-
-    public void skydetail(Graphics g, int start, Color color, int y) {
-        for (int i = start; i < 600; i += 12) {
-            g.setColor(color);
-            plot(g, i, y);
-        }
     }
 
     public void mainOpject(Graphics g) {
@@ -566,6 +607,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         plot(g, 276, 246);
         plot(g, 330, 270);
         plot(g, 204, 318);
+        plot(g, 198, 378);
 
         g.setColor(Color.decode("#feebf9"));
         plot(g, 330, 270);
@@ -668,58 +710,93 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         plot(g, 312, 354);
 
         // animation
-        animated(g);
+        animation(g);
 
     }
 
-    public void animated(Graphics g) {
-        int eyeAction = cntFrame % 2 * 6;
+    public void animation(Graphics g) {
+        int faceAction = cntFrame % 2 * 6;
+        int footAction = (cntFrame % 3 == 0) ? 0 : 6;
+        ;
+
         // eye
         g.setColor(Color.decode("#536198"));
-        g.fillRect(306 - eyeAction, 312 + eyeAction, 6 + eyeAction, 12 - eyeAction);
-        g.fillRect(330 + eyeAction, 318, 6, 12 - eyeAction);
-        plot(g, 306 + eyeAction, 324);
-        plot(g, 330, 330 - eyeAction);
+        g.fillRect(306 - faceAction, 312 + faceAction, 6 + faceAction, 12 - faceAction);
+        g.fillRect(330 + faceAction, 318, 6, 12 - faceAction);
+        plot(g, 306 + faceAction, 324);
+        plot(g, 330, 330 - faceAction);
 
         // hand
+        g.setColor(Color.decode("#feebf9"));
+        if (faceAction != 0) {
+            plot(g, 258, 324);
+            plot(g, 384, 348);
+            g.fillRect(378, 330, 24, 18);
+        }
+
         g.setColor(Color.decode("#fec2ee"));
-        plot(g, 258, 324);
-        g.fillRect(360, 336, 6, 18);
-        g.fillRect(246, 330, 18, 6);
-        g.fillRect(252, 336, 6, 12);
 
-        g.setColor(Color.decode("#536198"));
-        plot(g, 360, 324);
-        plot(g, 366, 330);
-        plot(g, 354, 330);
-        plot(g, 342, 342);
+        if (faceAction == 0) {
+            plot(g, 258, 324);
+            g.fillRect(360, 336, 6, 18);
+        } else {
+            plot(g, 372, 336);
+            plot(g, 384, 336);
+            plot(g, 396, 336);
+            plot(g, 390, 342);
+            plot(g, 378, 360);
+            plot(g, 366, 378);
+            g.fillRect(372, 366, 6, 12);
 
-        plot(g, 240, 330);
-        plot(g, 252, 312);
-        plot(g, 258, 318);
-        plot(g, 276, 330);
-
-        g.fillRect(378, 318, 6, 12);
-        g.fillRect(372, 324, 6, 12);
-        g.fillRect(348, 336, 12, 6);
-        g.fillRect(348, 348, 6, 12);
-        g.fillRect(378, 336, 6, 12);
-        g.fillRect(384, 348, 6, 18);
-
-        g.fillRect(240, 366, 6, 12);
-        g.fillRect(234, 336, 6, 30);
-        g.fillRect(246, 318, 6, 12);
-        g.fillRect(264, 324, 12, 6);
-        g.fillRect(270, 336, 6, 12);
-        g.fillRect(276, 348, 6, 12);
+        }
+        g.fillRect(246 + faceAction, 330, 18, 6);
+        g.fillRect(252 + faceAction, 336, 6, 12);
 
         g.setColor(Color.decode("#fefefe"));
-        plot(g, 252, 318);
-        plot(g, 270, 330);
-        // plot(g, 276, 330);
 
-        plot(g, 348, 342);
-        plot(g, 360, 330);
+        plot(g, 252, 318);
+        plot(g, 270 + faceAction, 330);
+        plot(g, 246, 324);
+        if (faceAction == 0) {
+            plot(g, 348, 342);
+            plot(g, 360, 330);
+        } else {
+            plot(g, 258, 324);
+            plot(g, 384, 324);
+            plot(g, 396, 324);
+        }
+
+        g.setColor(Color.decode("#536198"));
+        g.translate(faceAction * 5, 0);
+        plot(g, 354, 330 - faceAction * 2);
+        plot(g, 360, 324);
+        plot(g, 366, 330 - faceAction * 2);
+        g.translate(-faceAction * 5, 0);
+
+        g.fillRect(342, 342, 6 - faceAction, 6);
+        g.fillRect(378, 318, 6, 12);
+        g.fillRect(372, 324, 6, 12);
+        g.fillRect(348 + faceAction * 2, 336, 12, 6);
+        g.fillRect(348 + faceAction * 7, 348, 6, 12);
+        g.fillRect(378, 336, 6 - faceAction, 12);
+        g.fillRect(384, 348 + faceAction, 6, 18 - faceAction);
+        g.fillRect(402, 324, faceAction, 18);
+        g.fillRect(396, 342, faceAction, 12);
+
+        g.setColor(Color.decode("#536198"));
+
+        plot(g, 240 + faceAction * 2, 330 - faceAction);
+        plot(g, 252 + faceAction, 312 + faceAction);
+        plot(g, 258 + faceAction, 318 + faceAction);
+        plot(g, 276 - faceAction, 330);
+        g.fillRect(240 - faceAction, 366 - faceAction * 2, 6, 12);
+        g.fillRect(234 + faceAction, 336, 6, 30 - faceAction * 2);
+        g.fillRect(246, 318, 6, 12 - faceAction * 2);
+        g.fillRect(264, 324, 12, 6 - faceAction);
+        g.fillRect(270 + faceAction, 336, 6, 12);
+        g.fillRect(276, 348, 6, 12 - faceAction * 2);
+        g.fillRect(234, 318, faceAction, 18);
+        g.fillRect(240, 318, 12, faceAction);
 
         // foot
         g.setColor(Color.decode("#fec2ee"));
@@ -729,21 +806,38 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
         g.setColor(Color.decode("#fea3e6"));
         plot(g, 258, 444);
-        g.fillRect(222, 384, 6, 18);
-        g.fillRect(228, 396, 6, 24);
-        g.fillRect(234, 414, 6, 18);
-        g.fillRect(240, 432, 12, 12);
+        g.fillRect(222, 384, 6 - footAction, 18);
+        g.fillRect(228 + footAction, 396 + footAction, 6 + footAction * 2, 24 - footAction * 3);
+        g.fillRect(234 + footAction, 414, 6, 18 - footAction);
+        g.fillRect(240 + footAction, 432 - footAction * 3, 12, 12 + footAction);
         g.fillRect(264, 438, 12, 6);
 
         g.setColor(Color.decode("#536198"));
-        plot(g, 276, 444);
-        plot(g, 282, 438);
-        plot(g, 234, 432);
+        if (footAction == 0) {
+            g.fillRect(216, 378, 6, 24);
+            g.fillRect(252, 450, 24, 6);
+        } else {
+            plot(g, 270, 420);
+            plot(g, 258, 396);
+            plot(g, 252, 390);
+            plot(g, 228, 396);
 
-        g.fillRect(216, 378, 6, 24);
-        g.fillRect(240, 438, 6 + tmp * 2, 6);
-        g.fillRect(234, 444, 24, 6);
-        g.fillRect(252, 450, 24, 6);
+            g.fillRect(264, 402, 6, 12);
+            g.fillRect(258, 432, 12, 6);
+            g.fillRect(270, 426, 24, 6);
+            g.fillRect(240, 384, 12, 6);
+            g.fillRect(228, 390, 12, 6);
+            g.fillRect(222, 378, 6, 12);
+        }
+
+        plot(g, 276, 444 - footAction);
+        plot(g, 282 - footAction * 2, 438);
+        plot(g, 234, 432);
+        g.fillRect(240, 438, 6 + footAction * 2, 6);
+        g.fillRect(234, 444, 24 + footAction * 2, 6);
+
+        g.setColor(Color.decode("#fefefe"));
+        g.fillRect(240, 390, 12, footAction);
 
     }
 
