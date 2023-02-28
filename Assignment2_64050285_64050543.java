@@ -81,6 +81,8 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(0, 180, 600, 35);
         sicksack(g, 0, 186, 599, Color.decode("#fff2aa"));
 
+        createStars(g);
+
         // circle 116
         g.setColor(Color.decode("#fefefe"));
         g.fillOval(288, 155, 116, 116);
@@ -252,6 +254,8 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         g.fillRect(185, 336, 18, 6);
         plot(g, 108, 330);
 
+        createSeaLight(g);
+
         // bg grass
         g.setColor(Color.decode("#bafeca"));
         bresenhamsLine(g, 0, 354, 23, 354);
@@ -297,14 +301,37 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 23, 342, 35, 342);
         bresenhamsLine(g, 30, 336, 40, 336);
 
-        shadow(g);
-        cloud(g);
-        flower(g);
-        mainOpject(g);
+        createShadow(g);
+        createCloud(g);
+        createFlower(g);
+        createMainOpject(g);
 
     }
 
-    public void shadow(Graphics g) {
+    public void createStars(Graphics g) {
+        g.setColor(Color.decode("#fefefe"));
+        plot(g, 30, 6);
+        plot(g, 42, 48);
+        plot(g, 186, 36);
+        plot(g, 234, 18);
+        plot(g, 264, 48);
+        plot(g, 324, 12);
+        plot(g, 372, 42);
+        plot(g, 426, 12);
+        plot(g, 510, 6);
+        plot(g, 546, 36);
+        plot(g, 582, 12);
+
+    }
+
+    public void createSeaLight(Graphics g) {
+        g.setColor(Color.decode("#e4f8fb"));
+
+        for (int i = 224; i < 370; i += 3)
+            plot(g, random(0, 594), i);
+    }
+
+    public void createShadow(Graphics g) {
         Color c = Color.decode("#8adf9d");
         g.setColor(c);
         plot(g, 288, 438);
@@ -345,7 +372,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         }
     }
 
-    public void cloud(Graphics g) {
+    public void createCloud(Graphics g) {
         g.translate(cloudPosition, 0);
         // cloud 1
         g.setColor(Color.decode("#fdfecc"));
@@ -421,7 +448,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
     }
 
-    public void flower(Graphics g) {
+    public void createFlower(Graphics g) {
         g.translate(flowerSpeed, 0);
         // flower petals
         g.setColor(Color.decode("#d6adfe"));
@@ -522,7 +549,7 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
     }
 
-    public void mainOpject(Graphics g) {
+    public void createMainOpject(Graphics g) {
         // body color
         g.setColor(Color.decode("#feebf9"));
         g.fillRect(204, 324, 18, 18);
@@ -945,6 +972,11 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
 
             }
         }
+    }
+
+    private int random(int m, int n) {
+        int random = (int) (Math.random() * n + 1 + m);
+        return random;
     }
 
     void plot(Graphics g, int x, int y) {
