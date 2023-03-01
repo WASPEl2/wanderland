@@ -1,5 +1,3 @@
-package wanderland;
-
 //64050285 Aekapab  Sukkasem
 //64050543 Pariyakorn  Pramoonsin 
 import java.util.concurrent.TimeUnit;
@@ -301,10 +299,75 @@ public class Assignment2_64050285_64050543 extends JPanel implements Runnable {
         bresenhamsLine(g, 23, 342, 35, 342);
         bresenhamsLine(g, 30, 336, 40, 336);
 
+        createGrassBG(g);
         createShadow(g);
         createCloud(g);
         createFlower(g);
         createMainOpject(g);
+
+    }
+
+    public void createGrassBG(Graphics g) {
+        g.setColor(Color.decode("#fdfecc"));
+
+        plot(g, 42, 372);
+        plot(g, 66, 372);
+        plot(g, 60, 390);
+        plot(g, 90, 378);
+        plot(g, 114, 378);
+        plot(g, 102, 402);
+        plot(g, 150, 390);
+        plot(g, 162, 396);
+        plot(g, 144, 408);
+        plot(g, 168, 420);
+        plot(g, 144, 432);
+        plot(g, 186, 432);
+        plot(g, 216, 456);
+        plot(g, 252, 480);
+        plot(g, 366, 402);
+        plot(g, 360, 438);
+        plot(g, 360, 456);
+        plot(g, 378, 444);
+        plot(g, 378, 474);
+        plot(g, 414, 396);
+        plot(g, 408, 408);
+        plot(g, 450, 426);
+        plot(g, 444, 438);
+        plot(g, 432, 450);
+        plot(g, 444, 480);
+        plot(g, 468, 390);
+        plot(g, 486, 384);
+        plot(g, 486, 396);
+        plot(g, 498, 420);
+        plot(g, 516, 390);
+
+        g.setColor(Color.decode("#66c27a"));
+        plot(g, 12, 378);
+        plot(g, 12, 438);
+        plot(g, 18, 504);
+        plot(g, 36, 462);
+        plot(g, 78, 408);
+        plot(g, 132, 396);
+        plot(g, 108, 426);
+        plot(g, 120, 456);
+        plot(g, 162, 456);
+        plot(g, 174, 450);
+        plot(g, 192, 450);
+        plot(g, 144, 516);
+        plot(g, 222, 576);
+        plot(g, 264, 564);
+        plot(g, 324, 564);
+        plot(g, 366, 522);
+        plot(g, 402, 504);
+        plot(g, 414, 516);
+        plot(g, 402, 564);
+        plot(g, 468, 438);
+        plot(g, 516, 420);
+        plot(g, 516, 528);
+        plot(g, 534, 402);
+        plot(g, 582, 396);
+        plot(g, 546, 474);
+        plot(g, 576, 588);
 
     }
 
